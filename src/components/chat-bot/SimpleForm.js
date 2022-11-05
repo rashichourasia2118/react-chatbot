@@ -27,55 +27,24 @@ class SimpleForm extends Component {
           steps={[
             {
               id: "intro",
-              message: "Hello. What is your name?",
+              message: "Do you agree to the Terms and Conditions?",
               trigger: "intro-user",
             },
             {
               id: "intro-user",
-              user: true,
-              end: true,
-            },
-            // {
-            //   id: "intro",
-            //   message: "Do you agree to the Terms and Conditions?",
-            //   trigger: "intro-user",
-            // },
-            // {
-            //   id: "intro-user",
-            //   options: [
-            //     { value: "y", label: "Yes", trigger: "yes-response" },
-            //     { value: "n", label: "No", trigger: "no-response" },
-            //   ],
-            // },
-            // {
-            //   id: "yes-response",
-            //   message: "Great!",
-            //   end: true,
-            // },
-            // {
-            //   id: "no-response",
-            //   message: "Sorry to hear that.",
-            //   end: true,
-            // },
-            // {
-            //   id: "q-name",
-            //   message: "Hello. What is your name?",
-            //   trigger: "name",
-            // },
-            {
-              id: "name",
-              user: true,
-              validator: (value) => {
-                if (/^[A-Za-z][A-Za-z'-]+([A-Za-z][A-Za-z'-]+)*/.test(value)) {
-                  return true;
-                } else {
-                  return "Please input alphabet characters only.";
-                }
-              },
-              end: true,
+              options: [
+                { value: "y", label: "Yes", trigger: "yes-response" },
+                { value: "n", label: "No", trigger: "no-response" },
+              ],
             },
             {
-              id: "q-firstname",
+              id: "no-response",
+              message: "Sorry to hear that.",
+              end: true,
+            },
+
+            {
+              id: "yes-response",
               message: "What is your first name?",
               trigger: "firstname",
             },
@@ -96,7 +65,7 @@ class SimpleForm extends Component {
             },
             {
               id: "q-email",
-              message: "Finally. what is you email?",
+              message: "Finally. what is your email?",
               trigger: "email",
             },
             {
@@ -142,7 +111,26 @@ class SimpleForm extends Component {
               id: "end-message",
               component: <Post />,
               asMessage: true,
-              end: true,
+              trigger: "q-work",
+            },
+            {
+              id: "q-work",
+              message: "What can i do for you ?",
+              trigger: "work",
+            },
+            {
+              id: "work",
+              user: true,
+              trigger: "q-worans",
+            },
+            {
+              id: "q-worans",
+              message: "visit about page of our site",
+              trigger: "q-userans",
+            },
+            {
+              id: "q-userans",
+              user: true,
             },
             {
               id: "q-phone",
